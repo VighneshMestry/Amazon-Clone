@@ -37,6 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
+      //SafeArea avoids notification bar and displays the widgets in the remaining safe area where the widgets are supposed to be viewed.
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
