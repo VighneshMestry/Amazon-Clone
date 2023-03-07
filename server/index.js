@@ -17,6 +17,7 @@ const DB = "mongodb+srv://vighnesh:Rotomacc%4027@cluster0.kvzn2wp.mongodb.net/?r
 
 //middleware
 // CLIENT -> middleware -> SERVER -> CLIENT
+app.use(express.json());
 app.use(authRouter);
 
 
@@ -33,7 +34,7 @@ mongoose.connect(DB).then (() => {
 // API's have following requests
 // GET, PUT, POST, DELETE, UPDATE -> CRUD
 // This app.listen binds itself to the host specified and listen for any other connections 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Connected server at ${PORT}`);
 });
 
