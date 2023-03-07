@@ -1,5 +1,4 @@
 import 'package:amazon_clone/feautres/auth/screens/auth_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
