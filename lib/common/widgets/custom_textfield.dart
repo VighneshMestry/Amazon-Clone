@@ -1,3 +1,4 @@
+import 'package:amazon_clone/constants/utils.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -24,7 +25,10 @@ class CustomTextField extends StatelessWidget {
         ),
       ),
       validator: (value) {
-        
+        if(value == null || value.isEmpty){
+          return 'Enter your $hintText';
+        }
+        return null;
       },
     );
   }

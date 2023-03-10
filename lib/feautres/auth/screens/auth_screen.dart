@@ -1,7 +1,10 @@
 import 'package:amazon_clone/common/widgets/custom_button.dart';
 import 'package:amazon_clone/common/widgets/custom_textfield.dart';
+import 'package:amazon_clone/feautres/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/global_variables.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 
 enum Auth {
   signin,
@@ -21,6 +24,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
 
+  final AuthService authService = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -31,6 +35,15 @@ class _AuthScreenState extends State<AuthScreen> {
     _passwordController.dispose();
     _nameController.dispose();
     super.dispose();
+  }
+
+  void signUpUser() {
+    authService.signUpUser(
+      context: context,
+      email: _emailController.text,
+      name: _nameController.text,
+      password: _passwordController.text,
+    );
   }
 
   @override
@@ -96,7 +109,14 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Password',
                         ),
                         const SizedBox(height: 10),
-                        CustomButton(text: 'Sign Up', onTap: () {}),
+                        CustomButton(
+                          text: 'Sign Up',
+                          onTap: () {
+                            if(_signUpFormKey.currentState!.validate()){
+                              signUpUser();
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),

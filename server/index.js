@@ -34,7 +34,7 @@ mongoose.connect(DB).then (() => {
 // API's have following requests
 // GET, PUT, POST, DELETE, UPDATE -> CRUD
 // This app.listen binds itself to the host specified and listen for any other connections 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, "192.168.0.101", () => {
   console.log(`Connected server at ${PORT}`);
 });
 
