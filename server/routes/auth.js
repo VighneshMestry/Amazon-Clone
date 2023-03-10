@@ -8,7 +8,7 @@ const authRouter = express.Router();
 //   res.json({ msg: "Vighnesh" });
 // });
 
-
+//API
 // SIGN UP ROUTE
 authRouter.post("/api/signup", async (req, res) => {
   try{
