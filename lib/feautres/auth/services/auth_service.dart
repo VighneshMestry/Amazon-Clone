@@ -27,20 +27,21 @@ class AuthService {
           type: '',
           token: '');
 
-      http.Response response = await http.post(Uri.parse('$uri/api/signup'),
+      http.Response res = await http.post(Uri.parse('$uri/api/signup'),
           body: user.toJson(),
           headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8'});
       // print(response.body);
       // print(response.statusCode);
 
       httpErrorHandle(
-        response: response,
+        response: res,
         context: context,
         onSuccess: () {
           showSnackBar(context, 'Account created! Login with same credentials');
         },
       );
     } catch (e) {
+      // showSnackBar(context, e.toString());
       showSnackBar(context, e.toString());
     }
   }

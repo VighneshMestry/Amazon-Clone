@@ -3,7 +3,6 @@ import 'package:amazon_clone/common/widgets/custom_textfield.dart';
 import 'package:amazon_clone/feautres/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/global_variables.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 
 enum Auth {
