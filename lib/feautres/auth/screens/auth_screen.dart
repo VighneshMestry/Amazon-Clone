@@ -4,7 +4,6 @@ import 'package:amazon_clone/feautres/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/global_variables.dart';
 
-
 enum Auth {
   signin,
   signup,
@@ -12,7 +11,7 @@ enum Auth {
 
 class AuthScreen extends StatefulWidget {
   static const String routeName = '/auth-screen';
-  const AuthScreen({super.key});
+  const AuthScreen({Key? key}) : super(key: key);
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -22,7 +21,6 @@ class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signup;
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
-
   final AuthService authService = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -30,22 +28,22 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   void dispose() {
+    super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _nameController.dispose();
-    super.dispose();
   }
 
   void signUpUser() {
     authService.signUpUser(
       context: context,
       email: _emailController.text,
-      name: _nameController.text,
       password: _passwordController.text,
+      name: _nameController.text,
     );
   }
 
-    void signInUser() {
+  void signInUser() {
     authService.signInUser(
       context: context,
       email: _emailController.text,
@@ -57,7 +55,6 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundCOlor,
-      //SafeArea avoids notification bar and displays the widgets in the remaining safe area where the widgets are supposed to be viewed.
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -66,7 +63,10 @@ class _AuthScreenState extends State<AuthScreen> {
             children: [
               const Text(
                 'Welcome',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               ListTile(
                 tileColor: _auth == Auth.signup
@@ -74,18 +74,18 @@ class _AuthScreenState extends State<AuthScreen> {
                     : GlobalVariables.greyBackgroundCOlor,
                 title: const Text(
                   'Create Account',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 leading: Radio(
                   activeColor: GlobalVariables.secondaryColor,
                   value: Auth.signup,
                   groupValue: _auth,
                   onChanged: (Auth? val) {
-                    setState(
-                      () {
-                        _auth = val!;
-                      },
-                    );
+                    setState(() {
+                      _auth = val!;
+                    });
                   },
                 ),
               ),
@@ -101,16 +101,12 @@ class _AuthScreenState extends State<AuthScreen> {
                           controller: _nameController,
                           hintText: 'Name',
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         CustomTextField(
                           controller: _emailController,
                           hintText: 'Email',
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         CustomTextField(
                           controller: _passwordController,
                           hintText: 'Password',
@@ -119,11 +115,11 @@ class _AuthScreenState extends State<AuthScreen> {
                         CustomButton(
                           text: 'Sign Up',
                           onTap: () {
-                            if(_signUpFormKey.currentState!.validate()){
+                            if (_signUpFormKey.currentState!.validate()) {
                               signUpUser();
                             }
                           },
-                        ),
+                        )
                       ],
                     ),
                   ),
@@ -134,18 +130,18 @@ class _AuthScreenState extends State<AuthScreen> {
                     : GlobalVariables.greyBackgroundCOlor,
                 title: const Text(
                   'Sign-In.',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 leading: Radio(
                   activeColor: GlobalVariables.secondaryColor,
                   value: Auth.signin,
                   groupValue: _auth,
                   onChanged: (Auth? val) {
-                    setState(
-                      () {
-                        _auth = val!;
-                      },
-                    );
+                    setState(() {
+                      _auth = val!;
+                    });
                   },
                 ),
               ),
@@ -161,19 +157,20 @@ class _AuthScreenState extends State<AuthScreen> {
                           controller: _emailController,
                           hintText: 'Email',
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         CustomTextField(
                           controller: _passwordController,
                           hintText: 'Password',
                         ),
                         const SizedBox(height: 10),
-                        CustomButton(text: 'Sign In', onTap: () {
-                          if(_signInFormKey.currentState!.validate()){
+                        CustomButton(
+                          text: 'Sign In',
+                          onTap: () {
+                            if (_signInFormKey.currentState!.validate()) {
                               signInUser();
                             }
-                        }),
+                          },
+                        )
                       ],
                     ),
                   ),

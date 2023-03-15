@@ -13,13 +13,13 @@ const userSchema = mongoose.Schema({
     type: String,
     trim: true,
     validate: {
-      // val is the returned out of the callback function
-      validator: (val) => {
+      // value is the returned out of the callback function
+      validator: (value) => {
         const re =
-        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        return val.match(re);
+          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        return value.match(re);
       },
-      message: "Please enter valid email address",
+      message: "Please enter a valid email address",
     },
   },
   password: {
@@ -28,13 +28,15 @@ const userSchema = mongoose.Schema({
   },
   address: {
     type: String,
-    defualt: "",
+    default: "",
   },
   type: {
     type: String,
-    defualt: "user",
+    default: "user",
   },
 });
+
+
 
 // The model of the user
 

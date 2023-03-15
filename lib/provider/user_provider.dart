@@ -1,11 +1,12 @@
-import 'package:amazon_clone/models/user.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '../models/user.dart';
 
 class UserProvider extends ChangeNotifier {
   User _user = User(
-    email: '',
     id: '',
     name: '',
+    email: '',
     password: '',
     address: '',
     type: '',
@@ -14,8 +15,7 @@ class UserProvider extends ChangeNotifier {
 
   User get user => _user;
 
-  // String user because res.body which is in the form of a String will be passed to the function. 
-  void setUser (String user){
+  void setUser(String user) {
     _user = User.fromJson(user);
     notifyListeners();
   }

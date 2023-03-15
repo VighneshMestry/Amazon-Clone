@@ -1,12 +1,15 @@
-//IMPORT FROM PACKAGES
+// IMPORTS FROM PACKAGES
 const express = require("express");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+// const adminRouter = require("./routes/admin");
+
+// IMPORTS FROM OTHER FILES
+const authRouter = require("./routes/auth");
+// const productRouter = require("./routes/product");
+// const userRouter = require("./routes/user");
 
 // const authRouter = express.Router;    -- Stores only the address of the Router in the auhtRouter
 // const authRouter = express.Router();  -- Stores funcitonality of router in the authRouter and allows us to use that functionality of the Router.
-
-// IMPORT FROM OTHER FILES
-const authRouter = require("./routes/auth");
 
 //INIT
 //If we initialize this express (which we did) then we also have to listen it
