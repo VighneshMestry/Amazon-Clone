@@ -101,19 +101,34 @@ class AuthService {
       BuildContext context,
     ) async {
       try {
-
         SharedPreferences prefs = await SharedPreferences.getInstance();
         // The value of the token can be null when the user is logging in for the first time, otherwise the user can be kept logged in.
         String? token = prefs.getString('x-auth-token');
-        
-        if(token == null) {
+
+        if (token == null) {
           prefs.setString('x-auth-token', '');
         }
-        
-        final tokenRes = await http.post(Uri.parse('$uri/isTokenValid'), headers: <String, String>{
+
+        final tokenRes = await http
+            .post(Uri.parse('$uri/isTokenValid'), headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token' : token!,
+          'x-auth-token': token!,
         });
+
+        var response = jsonDecode(tokenRes.body);
+
+        if (response == true) {
+          http.Response userRes = await http.get(
+            Uri.parse('$uri/'),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              'x-auth-token': token,
+            },
+          );
+
+          var userProvider = Provider.of<UserProvider>(context, listen: false);
+          userProvider.setUser(userRes.body);
+        }
 
         // http.Response res = await http.post(
         //   Uri.parse('$uri/api/signin'),

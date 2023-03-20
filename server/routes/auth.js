@@ -85,7 +85,7 @@ authRouter.post("/isTokenValid", async (req, res) => {
     if(!user) res.json(false);
     res.json(true);
   } catch (e) {
-
+    
   }
 });
 
