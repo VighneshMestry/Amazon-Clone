@@ -68,7 +68,34 @@ authRouter.post("/api/signin", async (req, res) => {
   }
 });
 
+// API
+// is token valid
 
+// If auth middleware is added over here then we can also user req.user object anywhere in this post request
+authRouter.post("/isTokenValid", async (req, res) => {
+  try{
 
-  
+    const token = req.header('x-auth-token');
+    if(!token) return res.json(false);
+
+    const isVerified = jwt.verify(token, 'passwordKey');
+    if(!isVerified) return res.json(false);
+
+    const user = await User.findById(isVerified.id);
+    if(!user) res.json(false);
+    res.json(true);
+  } catch (e) {
+
+  }
+});
+
+//GET user data api 
+// after getting the auth middleware now we can use req.user anywhere in this code
+// If next is not passed in the auth middleware then it wont call the next callback function which is specified below
+authRouter.get('/', auth, async (req, res) => {
+  // Here we can use req.user only because it is added to the req by the auth middleware
+  const user = User.findById(req.user);
+  res.json({...user._doc, token: req.token}); 
+
+});
 module.exports = authRouter;
