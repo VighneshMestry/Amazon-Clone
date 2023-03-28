@@ -3,6 +3,7 @@ const User = require("../models/user");
 const bcryptjs = require("bcryptjs");
 const authRouter = express.Router();
 const jwt = require("jsonwebtoken");
+const auth = require("../middlewares/auth");
 // const auth = require("../middlewares/auth");
 
 // authRouter.get("/user", (req, res) => {
@@ -82,10 +83,10 @@ authRouter.post("/isTokenValid", async (req, res) => {
     if(!isVerified) return res.json(false);
 
     const user = await User.findById(isVerified.id);
-    if(!user) res.json(false);
+    if(!user) return res.json(false);
     res.json(true);
   } catch (e) {
-    
+    res.status(500).json({error : e.message});
   }
 });
 
@@ -94,7 +95,7 @@ authRouter.post("/isTokenValid", async (req, res) => {
 // If next is not passed in the auth middleware then it wont call the next callback function which is specified below
 authRouter.get('/', auth, async (req, res) => {
   // Here we can use req.user only because it is added to the req by the auth middleware
-  const user = User.findById(req.user);
+  const user = await User.findById(req.user);
   res.json({...user._doc, token: req.token}); 
 
 });

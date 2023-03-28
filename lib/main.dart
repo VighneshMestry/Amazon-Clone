@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:amazon_clone/common/widgets/bottom_bar.dart';
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/feautres/auth/services/auth_service.dart';
+// import 'package:amazon_clone/feautres/home/screens/home_screen.dart';
 import 'package:amazon_clone/provider/user_provider.dart';
 import 'package:amazon_clone/routes.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +34,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    authService.getUserData(context);
+    // log(Provider.of<UserProvider>(context).user.token.isNotEmpty.toString());
   }
 
   // This widget is the root of your application.
@@ -48,7 +54,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: AuthScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty ? const BottomBar() : const AuthScreen(),
     );
   }
 }
