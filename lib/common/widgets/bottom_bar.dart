@@ -1,4 +1,7 @@
 import 'package:amazon_clone/constants/global_variables.dart';
+import 'package:amazon_clone/feautres/account/screen/account_screen.dart';
+import 'package:amazon_clone/feautres/home/screens/home_screen.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -12,20 +15,33 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-
   var _page = 0;
   double bottomBarWidth = 42;
   double bottomBarBorderWidth = 5;
 
+  List<Widget> pages = [
+    const HomeScreen(),
+    const AccountScreen(),
+    const Center(child: Text('Cart Page')),
+  ];
+
+  void updatePage(int page) {
+    setState(() {
+      _page = page;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _page,
         selectedItemColor: GlobalVariables.selectedNavBarColor,
         unselectedItemColor: GlobalVariables.unselectedNavBarColor,
         backgroundColor: GlobalVariables.backgroundColor,
         iconSize: 28,
+        onTap: updatePage,
         items: [
           BottomNavigationBarItem(
             icon: Container(
@@ -74,7 +90,13 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                 ),
               ),
-              child: const Icon(Icons.person_outline_outlined),
+              child: const Badge(
+                badgeContent: Text('2'),
+                badgeStyle: BadgeStyle(
+                  badgeColor: Colors.white,
+                ),
+                child: Icon(Icons.shopping_cart_outlined),
+              ),
             ),
             label: '',
           ),
