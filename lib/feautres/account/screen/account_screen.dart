@@ -1,4 +1,5 @@
 import 'package:amazon_clone/constants/global_variables.dart';
+import 'package:amazon_clone/feautres/account/widgets/bottom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,14 +11,43 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
+        preferredSize: const Size.fromHeight(50),
         child: AppBar(
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: GlobalVariables.appBarGradient,
             ),
           ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                alignment: Alignment.topLeft,
+                child: Image.asset(
+                  'amazon_in.png',
+                  width: 120,
+                  height: 45,
+                  color: Colors.black,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: Row(
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.only(right: 15),
+                      child: Icon(Icons.notifications_outlined),
+                    ),
+                    Icon(Icons.search_outlined),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
+      ),
+      body: Container(
+        child: const BelowAppBar(),
       ),
     );
   }

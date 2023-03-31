@@ -41,6 +41,7 @@ authRouter.post("/api/signup", async (req, res) => {
 //SignIn route
 authRouter.post("/api/signin", async (req, res) => {
   try {
+    log('In api request');
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -57,6 +58,7 @@ authRouter.post("/api/signin", async (req, res) => {
 
     //This helps to verify whether the user is really the one who he claims to be
     const token = jwt.sign({ id: user._id }, "passwordKey");
+    console.log('Api request successful');
     res.json({ token, ...user._doc });
     // ...user helps us to access each property('token', 'name', 'email') of the json individually
     // {
