@@ -1,3 +1,4 @@
+import 'package:amazon_clone/feautres/account/widgets/account_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -12,12 +13,14 @@ class TopButton extends StatefulWidget {
 class _TopButtonState extends State<TopButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ElevatedButton(
-        onPressed: () {},
-        style: const ButtonStyle(),
-        child: const Text(''),
-      ),
+    return Column(
+      children: [
+        Row(
+          children: [
+            AccountButton(text: "Your Orders", onTap: () {}),
+          ],
+        )
+      ],
     );
   }
 }
