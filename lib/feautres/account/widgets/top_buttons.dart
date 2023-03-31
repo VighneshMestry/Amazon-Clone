@@ -18,6 +18,14 @@ class _TopButtonState extends State<TopButton> {
         Row(
           children: [
             AccountButton(text: "Your Orders", onTap: () {}),
+            AccountButton(text: "Turn Seller", onTap: () {}),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            AccountButton(text: "Log Out", onTap: () {}),
+            AccountButton(text: "Your Wish List", onTap: () {}),
           ],
         )
       ],
