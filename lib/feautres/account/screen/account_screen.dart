@@ -3,8 +3,6 @@ import 'package:amazon_clone/feautres/account/widgets/bottom_app_bar.dart';
 import 'package:amazon_clone/feautres/account/widgets/orders.dart';
 import 'package:amazon_clone/feautres/account/widgets/top_buttons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
