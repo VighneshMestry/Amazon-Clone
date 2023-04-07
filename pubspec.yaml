@@ -46,6 +46,7 @@ dependencies:
   flet: ^0.3.2
   badges: ^3.0.3
   carousel_slider: ^4.2.1
+  dotted_border: ^2.0.0+3
 
 dev_dependencies:
   flutter_test:
