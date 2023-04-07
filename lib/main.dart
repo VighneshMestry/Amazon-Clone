@@ -9,6 +9,7 @@ import 'package:amazon_clone/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'feautres/admin/screen/admin_screen.dart';
 import 'feautres/auth/screens/auth_screen.dart';
 
 void main() {
@@ -28,7 +29,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   final AuthService authService = AuthService();
 
   @override
@@ -55,7 +55,11 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: Provider.of<UserProvider>(context).user.token.isNotEmpty ? const BottomBar() : const AuthScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? Provider.of<UserProvider>(context).user.type == 'user'
+              ? const BottomBar()
+              : const AdminScreen()
+          : const AuthScreen(),
     );
   }
 }

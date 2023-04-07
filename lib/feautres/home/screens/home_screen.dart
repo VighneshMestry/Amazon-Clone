@@ -1,7 +1,12 @@
+import 'package:amazon_clone/feautres/home/widgets/address_box.dart';
+import 'package:amazon_clone/feautres/home/widgets/carousel_image.dart';
+import 'package:amazon_clone/feautres/home/widgets/deal_of_the_day.dart';
 import 'package:amazon_clone/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:amazon_clone/constants/global_variables.dart';
+
+import '../widgets/top_category.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -85,9 +90,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Center(
-        child: Text(
-          user.toJson(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            AddressBox(),
+            SizedBox(height: 10,),
+            TopCategories(),
+            SizedBox(height: 10,),
+            CarouselImages(),
+            SizedBox(height: 10,),
+            DealOfTheDay(),
+          ],
         ),
       ),
     );
