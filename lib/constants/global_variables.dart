@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 // Laptop IP Address
 // String  uri = "http://localhost:3000";
-String uri = "http://192.168.25.212:3000";
+String uri = "http://20.0.110.42:3000";
+
 // String uri = "http://192.168.0.102:3000";
 //  String uri = "http://2405:204:2286:947f:de01:d66c:6a37:ea2f:3000";
 class GlobalVariables {

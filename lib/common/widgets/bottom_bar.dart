@@ -90,13 +90,13 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                 ),
               ),
-              child: const Badge(
-                badgeContent: Text('2'),
-                badgeStyle: BadgeStyle(
-                  badgeColor: Colors.white,
-                ),
-                child: Icon(Icons.shopping_cart_outlined),
-              ),
+              // child: const Badge(
+              //   badgeContent: Text('2'),
+              //   badgeStyle: BadgeStyle(
+              //     badgeColor: Colors.white,
+              //   ),
+              //   child: Icon(Icons.shopping_cart_outlined),
+              // ),
             ),
             label: '',
           ),
