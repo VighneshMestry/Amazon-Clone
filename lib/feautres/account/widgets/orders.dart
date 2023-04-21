@@ -1,7 +1,6 @@
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/feautres/account/widgets/single_product.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
