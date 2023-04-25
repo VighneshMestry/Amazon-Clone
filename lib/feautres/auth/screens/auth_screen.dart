@@ -35,6 +35,7 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void signUpUser() {
+    print('temp function called');
     authService.signUpUser(
       context: context,
       email: _emailController.text,

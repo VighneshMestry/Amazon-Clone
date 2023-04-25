@@ -53,11 +53,13 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? Provider.of<UserProvider>(context).user.type == 'user'
-              ? const BottomBar()
-              : const AdminScreen()
-          : const AuthScreen(),
+      // home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          // ? Provider.of<UserProvider>(context).user.type == 'user'
+          //     ? const BottomBar()
+          //     : const AdminScreen()
+          // : const AuthScreen(),
+      // home: const BottomBar(),
+    home: const AdminScreen(),
     );
   }
 }

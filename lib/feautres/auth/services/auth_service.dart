@@ -34,7 +34,7 @@ class AuthService {
         type: '',
         token: '',
       );
-
+      print('response called');
       http.Response res = await http.post(
         Uri.parse('$uri/api/signup'),
         body: user.toJson(),
@@ -42,6 +42,7 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
+      print('Response received');
 
       httpErrorHandle(
         response: res,
@@ -66,6 +67,8 @@ class AuthService {
   }) async {
     try {
       log('Request called');
+      print('checking');
+      print('Request called');
       http.Response res = await http.post(
         Uri.parse('$uri/api/signin'),
         body: jsonEncode({
@@ -80,6 +83,7 @@ class AuthService {
         response: res,
         context: context,
         onSuccess: () async {
+          print('Output returned');
           log('output returned');
           SharedPreferences prefs = await SharedPreferences.getInstance();
 

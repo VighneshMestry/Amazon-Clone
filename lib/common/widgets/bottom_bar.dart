@@ -1,9 +1,8 @@
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/feautres/account/screen/account_screen.dart';
 import 'package:amazon_clone/feautres/home/screens/home_screen.dart';
+import 'package:badges/badges.dart' as Badges;
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class BottomBar extends StatefulWidget {
   static const String routeName = '/actual-home';
@@ -89,13 +88,13 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                 ),
               ),
-              // child: const Badge(
-              //   badgeContent: Text('2'),
-              //   badgeStyle: BadgeStyle(
-              //     badgeColor: Colors.white,
-              //   ),
-              //   child: Icon(Icons.shopping_cart_outlined),
-              // ),
+              child: const Badges.Badge(
+                badgeContent: Text('2'),
+                badgeStyle: Badges.BadgeStyle(
+                  badgeColor: Colors.white,
+                ),
+                child: Icon(Icons.shopping_cart_outlined),
+              ),
             ),
             label: '',
           ),
