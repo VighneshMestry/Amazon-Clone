@@ -21,3 +21,16 @@ adminRouter.post("/admin/add-product", admin, async (req, res) =>  {
     return res.status(500).json({ msg: e.message });
   }
 });
+
+// get all products
+// The admin middleware makes sure that only admin can access the functionalities
+adminRouter.get('/admin/get-product', admin, async (req, res) => {
+  try{
+    const product = Product.find({});
+    res.json(product);
+  } catch (e) {
+    res.status(500).json({error: e.message});
+  }
+});
+
+module.exports = adminRouter;

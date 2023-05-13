@@ -1,8 +1,6 @@
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/feautres/admin/screen/post_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({super.key});

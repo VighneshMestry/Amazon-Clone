@@ -1,8 +1,6 @@
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/feautres/account/widgets/single_product.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Orders extends StatefulWidget {
   const Orders({super.key});
@@ -43,7 +41,7 @@ class _OrdersState extends State<Orders> {
           ],
         ),
         // Displaying orders with ListView Builder if the container height is not specified then it will give renderbox overflow error
-        Container(
+        SizedBox(
           height: 170,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,

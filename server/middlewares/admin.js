@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
-const user = async (req, res, next) => {
+// The admin middleware makes sure that only admin can access the functionalities
+
+const admin = async (req, res, next) => {
   try {
     const token = req.header('x-auth-token');
     if(!token) return res.status(401).json({msg: 'No auth token found!, Access denied'});
@@ -22,4 +24,6 @@ const user = async (req, res, next) => {
   }
 };
 
-module.exports = user;
+
+
+module.exports = admin;

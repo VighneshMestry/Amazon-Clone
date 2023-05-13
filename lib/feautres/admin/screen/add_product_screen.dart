@@ -48,13 +48,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
   void sellProduct() async {
     if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
       adminServices.uploadProduct(
-          context: context,
-          name: productNameController.text,
-          description: descriptionController.text,
-          price: double.parse(priceController.text),
-          quantity: double.parse(quantityController.text),
-          category: category,
-          images: images);
+        context: context,
+        name: productNameController.text,
+        description: descriptionController.text,
+        price: double.parse(priceController.text),
+        quantity: double.parse(quantityController.text),
+        category: category,
+        images: images,
+      );
     }
   }
 
@@ -65,7 +66,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       images = res;
     });
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,6 +88,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
       ),
       body: SingleChildScrollView(
         child: Form(
+          key: _addProductFormKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
@@ -189,7 +191,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     },
                   ),
                 ),
-                CustomButton(text: 'Sell', onTap: () {})
+                CustomButton(text: 'Sell', onTap: sellProduct)
               ],
             ),
           ),
