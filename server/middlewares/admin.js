@@ -8,7 +8,7 @@ const admin = async (req, res, next) => {
     const token = req.header('x-auth-token');
     if(!token) return res.status(401).json({msg: 'No auth token found!, Access denied'});
 
-    const isVerified = jwt.verify(token, 'passwordKey');
+    const isVerified = jwt.verify(token, "passwordKey");
     if(!isVerified) return res.status(401).json({error: "Token verification failed, Access denied!"});
 
     const user = await User.findById(isVerified.id);
@@ -20,7 +20,7 @@ const admin = async (req, res, next) => {
     req.token = token;
     next();
   } catch (e) {
-    return res.status(500).json({error: e.message});
+    res.status(500).json({error: e.message});
   }
 };
 

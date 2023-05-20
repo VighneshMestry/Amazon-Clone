@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:amazon_clone/constants/error_handling.dart';
@@ -23,7 +24,7 @@ class AdminServices {
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
-      CloudinaryPublic cloudinary = CloudinaryPublic('du4li5gol', 'ubxsaabn');
+      final cloudinary = CloudinaryPublic('du4li5gol', 'ubxsaabn');
       List<String> imageUrls = [];
       for (int i = 0; i < images.length; i++) {
         CloudinaryResponse res = await cloudinary
@@ -49,12 +50,16 @@ class AdminServices {
         body: product.toJson(),
       );
 
+      log('');
+            
       // ignore: use_build_context_synchronously
       httpErrorHandle(
           response: res,
           context: context,
           onSuccess: () {
             showSnackBar(context, 'Product Added Successfully');
+            log('Product added is : ');
+            print(product);
             Navigator.pop(context);
           });
     } catch (e) {
@@ -89,6 +94,8 @@ class AdminServices {
               ),
             );
           }
+          log('_____________________________');
+          print(productList);
         },
       );
     } catch (e) {
