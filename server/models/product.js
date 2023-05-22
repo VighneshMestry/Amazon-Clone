@@ -1,22 +1,20 @@
 const mongoose = require("mongoose");
 
-// Schema = Structure of the application or the user model
-// This is just the structure of how the user is going to look and not the model of the user
 const productSchema = mongoose.Schema({
   name: {
-    required: true,
     type: String,
+    required: true,
     trim: true,
   },
   description: {
-    required: true,
     type: String,
+    required: true,
     trim: true,
   },
   images: [
     {
-      required: true,
       type: String,
+      required: true,
     },
   ],
   quantity: {
@@ -28,10 +26,10 @@ const productSchema = mongoose.Schema({
     required: true,
   },
   category: {
-    type: Number,
+    type: String,
     required: true,
   },
 });
 
 const Product = mongoose.model("Product", productSchema);
-module.exports = Product;
+module.exports = { Product };

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:amazon_clone/constants/error_handling.dart';
@@ -50,18 +49,15 @@ class AdminServices {
         body: product.toJson(),
       );
 
-      log('');
-            
       // ignore: use_build_context_synchronously
       httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () {
-            showSnackBar(context, 'Product Added Successfully');
-            log('Product added is : ');
-            print(product);
-            Navigator.pop(context);
-          });
+        response: res,
+        context: context,
+        onSuccess: () {
+          showSnackBar(context, 'Product Added Successfully');
+          Navigator.pop(context);
+        },
+      );
     } catch (e) {
       showSnackBar(context, e.toString());
     }
@@ -94,8 +90,6 @@ class AdminServices {
               ),
             );
           }
-          log('_____________________________');
-          print(productList);
         },
       );
     } catch (e) {

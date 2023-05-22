@@ -18,7 +18,7 @@ adminRouter.post("/admin/add-product", admin, async (req, res) =>  {
     product = await product.save();
     res.json(product);
   } catch (e) {
-    return res.status(500).json({ msg: e.message });
+    return res.status(500).json({ message: e.message });
   }
 });
 
