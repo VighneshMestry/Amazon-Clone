@@ -62,3 +62,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+
+// When called the setState it builds the 'build' function again.

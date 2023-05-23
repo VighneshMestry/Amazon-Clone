@@ -1,3 +1,4 @@
+import 'package:amazon_clone/feautres/home/search/screens/search_screen.dart';
 import 'package:amazon_clone/feautres/home/widgets/address_box.dart';
 import 'package:amazon_clone/feautres/home/widgets/carousel_image.dart';
 import 'package:amazon_clone/feautres/home/widgets/deal_of_the_day.dart';
@@ -17,6 +18,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  void navigateToSearchScreen(String query) {
+    Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+  }
+
   @override
   Widget build(BuildContext context) {
     // final user = Provider.of<UserProvider>(context).user;
@@ -40,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(7),
                     elevation: 1,
                     child: TextFormField(
+                      onFieldSubmitted: navigateToSearchScreen,
                       decoration: InputDecoration(
                         prefixIcon: InkWell(
                           onTap: () {},

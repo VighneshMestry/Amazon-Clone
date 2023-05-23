@@ -24,8 +24,20 @@ class _PostsScreenState extends State<PostsScreen> {
 
   fetchAllProducts() async {
     products = await adminServices.fetchAllProduct(context);
-    setState(
-        () {}); // A DUMMY SETSTATE TO REFRESH THE PAGE TO CHECK AGAIN IF THE LIST HAS PRODUCTS OR NOT
+    setState(() {});
+    // A DUMMY SETSTATE TO REFRESH THE PAGE TO CHECK AGAIN IF THE LIST HAS PRODUCTS OR NOT
+  }
+
+  void deleteProduct(Product product, int index) {
+    adminServices.deleteProduct(
+      context : context,
+      product : product,
+      onSuccess : () async {
+        products!.removeAt(index);
+        // await fetchAllProducts();
+        setState(() {});
+      },
+    );
   }
 
   @override
@@ -55,8 +67,11 @@ class _PostsScreenState extends State<PostsScreen> {
                           ),
                         ),
                         IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.delete_outline))
+                          onPressed: () {
+                            deleteProduct(productData, index);
+                          },
+                          icon: const Icon(Icons.delete_outline),
+                        )
                       ],
                     ),
                   ],

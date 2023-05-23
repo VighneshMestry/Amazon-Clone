@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 // IMPORTS FROM OTHER FILES
 const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin");
+const productRouter = require("./routes/product");
 // const productRouter = require("./routes/product");
 // const userRouter = require("./routes/user");
 
@@ -24,6 +25,7 @@ const DB = "mongodb+srv://vighnesh:Rotomacc%4027@cluster0.kvzn2wp.mongodb.net/?r
 app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
+app.use(productRouter);
 
 
 // Connections
