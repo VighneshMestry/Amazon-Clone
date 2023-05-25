@@ -3,6 +3,7 @@ import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/feautres/home/search/services/search_services.dart';
 import 'package:amazon_clone/feautres/home/search/widgets/searched_product.dart';
 import 'package:amazon_clone/feautres/home/widgets/address_box.dart';
+import 'package:amazon_clone/feautres/product_details/screens/product_details_screen.dart';
 import 'package:amazon_clone/models/product.dart';
 import 'package:flutter/material.dart';
 
@@ -121,7 +122,17 @@ class _SearchScreenState extends State<SearchScreen> {
                     child: ListView.builder(
                       itemCount: productList!.length,
                       itemBuilder: (context, index) {
-                        return SearchedProduct(product: productList![index]);
+                        return Container(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, ProductDetailsScreen.routeName, arguments: productList![index]);
+                            },
+                            child: SearchedProduct(
+                              product: productList![index],
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),

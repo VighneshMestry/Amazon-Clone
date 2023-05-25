@@ -24,4 +24,29 @@ productRouter.get('/api/product', auth, async (req, res) => {
     }
   });
 
+  productRouter.post('/api/rate-product', auth, async (req, res) => {
+    try {
+      const {id, rating} = req.body;
+      let product = Product.findById(id);
+
+      for(let i =0; i < product.ratings.length; i++){
+        if(product.ratings[i].userId == req.user){
+          product.ratings.slice(i, 1);
+        }
+      }
+
+      const ratingSchema = {
+        userId: req.user,
+        rating: rating,
+      }
+
+      product.ratings.push(ratingSchema);
+      product = await product.save();
+      res.json(product);
+
+    } catch (e) {
+      res.status(500).json({error : e.message});
+    }
+  });
+
 module.exports = productRouter;
