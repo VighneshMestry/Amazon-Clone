@@ -1,6 +1,4 @@
-import 'package:amazon_clone/common/widgets/stars.dart';
 import 'package:amazon_clone/models/product.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchedProduct extends StatelessWidget {
@@ -35,7 +33,7 @@ class SearchedProduct extends StatelessWidget {
                   Container(
                     width: 235,
                     padding: const EdgeInsets.only(top: 5, left: 10),
-                    child: const Stars(rating: 4),
+                    // child: const Stars(rating: 4),
                   ),
                   Container(
                     width: 235,

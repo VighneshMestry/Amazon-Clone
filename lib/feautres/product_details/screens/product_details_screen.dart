@@ -1,5 +1,4 @@
 import 'package:amazon_clone/common/widgets/custom_button.dart';
-import 'package:amazon_clone/common/widgets/stars.dart';
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/feautres/home/search/screens/search_screen.dart';
 import 'package:amazon_clone/feautres/product_details/services/product_services.dart';
@@ -19,14 +18,19 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  ProductDetailsServices productDetailsServices = ProductDetailsServices();
+
   void navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
   }
 
+  void addToCart() {
+    productDetailsServices.addToCart(context: context, product: widget.product);
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    ProductDetailsServices productDetailsServices = ProductDetailsServices();
+    // ProductDetailsServices productDetailsServices = ProductDetailsServices();
 
     return Scaffold(
       appBar: PreferredSize(
@@ -110,7 +114,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(widget.product.id!),
-                  const Stars(rating: 4),
+                  // const Stars(rating: 4),
                 ],
               ),
             ),
@@ -186,7 +190,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               padding: const EdgeInsets.all(8.0),
               child: CustomButton(
                 text: 'Add to Cart',
-                onTap: () {},
+                onTap: addToCart,
                 color: const Color.fromRGBO(254, 216, 19, 1),
               ),
             ),
@@ -220,9 +224,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   color: GlobalVariables.secondaryColor,
                 );
               },
-              onRatingUpdate: (rating) {
-                productDetailsServices.rateProducts(context, widget.product, rating);
-              },
+              // onRatingUpdate: (rating) {
+              // productDetailsServices.rateProducts(context, widget.product, rating);
+              // },
+              onRatingUpdate: (rating) {},
             ),
           ],
         ),

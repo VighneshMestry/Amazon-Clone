@@ -33,6 +33,7 @@ class AuthService {
         address: '',
         type: '',
         token: '',
+        cart: [],
       );
       print('response called');
       http.Response res = await http.post(
@@ -44,6 +45,7 @@ class AuthService {
       );
       print('Response received');
 
+      // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,
@@ -79,6 +81,7 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
+      // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,
