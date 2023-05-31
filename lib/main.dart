@@ -66,3 +66,6 @@ class _MyAppState extends State<MyApp> {
 
 // When called the setState it builds the 'build' function again.
 // important steps in product_services.dart line no. 38
+// dispose method makes the objects which are disposed in the dispose method as GlobalVariables.
+// address_screen.dart line no. 186 and cart_screen.dart line no. 114
+// address_screen.dart line no. 76 uncomment the line and read the error. 
