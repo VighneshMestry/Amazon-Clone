@@ -68,14 +68,21 @@ class _AddressScreenState extends State<AddressScreen> {
     } else {
       showSnackBar(context, 'ERROR');
     }
-    print(addressToBeUsed);
   }
 
   void onGooglePayResult(res) async {
-    if(Provider.of<UserProvider>(context).user.address.isEmpty){
+    if (Provider.of<UserProvider>(context, listen: false).user.address.isEmpty) {
       // await addressServices.saveUserAddress(context: context, address: addressToBeUsed);
-      addressServices.saveUserAddress(context: context, address: addressToBeUsed);
+      addressServices.saveUserAddress(
+        context: context,
+        address: addressToBeUsed,
+      );
     }
+    addressServices.placeOrder(
+      context: context,
+      totalSum: double.parse(widget.totalAmount),
+      address: addressToBeUsed,
+    );
   }
 
   @override

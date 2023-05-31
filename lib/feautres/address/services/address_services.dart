@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:amazon_clone/constants/error_handling.dart';
+import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/constants/utils.dart';
 import 'package:amazon_clone/models/user.dart';
 import 'package:amazon_clone/provider/user_provider.dart';
@@ -17,13 +18,13 @@ class AddressServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
       http.Response res = await http.post(
-        Uri.parse(''),
+        Uri.parse("$uri/api/save-user-address"),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': userProvider.user.token,
         },
         body: jsonEncode({
-          'address' : address,
+          'address': address,
         }),
       );
 
@@ -32,10 +33,43 @@ class AddressServices {
         context: context,
         response: res,
         onSuccess: () {
-          User user = userProvider.user.copyWith(address: jsonDecode(res.body)['address']);
+          User user = userProvider.user
+              .copyWith(address: jsonDecode(res.body)['address']);
           userProvider.setUserFromModel(user);
         },
       );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  void placeOrder({
+    required BuildContext context,
+    required double totalSum,
+    required String address,
+  }) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      http.Response res = await http.post(
+        Uri.parse('$uri/api/orders'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+        body: jsonEncode({
+          'cart': userProvider.user.cart,
+          'address': address,
+          'totalSum': totalSum,
+        })
+      );
+
+      // ignore: use_build_context_synchronously
+      httpErrorHandle(response: res, context: context, onSuccess: () {
+        showSnackBar(context, 'Your Order has been placed!');
+        User user = userProvider.user.copyWith(cart: []);
+        userProvider.setUserFromModel(user);
+      });
+
     } catch (e) {
       showSnackBar(context, e.toString());
     }
