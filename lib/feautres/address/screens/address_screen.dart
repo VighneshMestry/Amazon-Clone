@@ -1,5 +1,5 @@
+import 'package:amazon_clone/common/widgets/custom_button.dart';
 import 'package:amazon_clone/common/widgets/custom_textfield.dart';
-import 'package:amazon_clone/common/widgets/loader.dart';
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/constants/utils.dart';
 import 'package:amazon_clone/feautres/address/services/address_services.dart';
@@ -70,7 +70,7 @@ class _AddressScreenState extends State<AddressScreen> {
     }
   }
 
-  void onGooglePayResult(res) async {
+  void onGooglePayResult() async {
     if (Provider.of<UserProvider>(context, listen: false).user.address.isEmpty) {
       // await addressServices.saveUserAddress(context: context, address: addressToBeUsed);
       addressServices.saveUserAddress(
@@ -88,43 +88,43 @@ class _AddressScreenState extends State<AddressScreen> {
   @override
   Widget build(BuildContext context) {
     final address = context.watch<UserProvider>().user.address;
-    const String defaultGooglePay = '''{
-  "provider": "google_pay",
-  "data": {
-    "environment": "TEST",
-    "apiVersion": 2,
-    "apiVersionMinor": 0,
-    "allowedPaymentMethods": [
-      {
-        "type": "CARD",
-        "tokenizationSpecification": {
-          "type": "PAYMENT_GATEWAY",
-          "parameters": {
-            "gateway": "example",
-            "gatewayMerchantId": "gatewayMerchantId"
-          }
-        },
-        "parameters": {
-          "allowedCardNetworks": ["VISA", "MASTERCARD"],
-          "allowedAuthMethods": ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-          "billingAddressRequired": true,
-          "billingAddressParameters": {
-            "format": "FULL",
-            "phoneNumberRequired": true
-          }
-        }
-      }
-    ],
-    "merchantInfo": {
-      "merchantId": "01234567890123456789",
-      "merchantName": "Example Merchant Name"
-    },
-    "transactionInfo": {
-      "countryCode": "US",
-      "currencyCode": "USD"
-    }
-  }
-}''';
+//     const String defaultGooglePay = '''{
+//   "provider": "google_pay",
+//   "data": {
+//     "environment": "TEST",
+//     "apiVersion": 2,
+//     "apiVersionMinor": 0,
+//     "allowedPaymentMethods": [
+//       {
+//         "type": "CARD",
+//         "tokenizationSpecification": {
+//           "type": "PAYMENT_GATEWAY",
+//           "parameters": {
+//             "gateway": "example",
+//             "gatewayMerchantId": "gatewayMerchantId"
+//           }
+//         },
+//         "parameters": {
+//           "allowedCardNetworks": ["VISA", "MASTERCARD"],
+//           "allowedAuthMethods": ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+//           "billingAddressRequired": true,
+//           "billingAddressParameters": {
+//             "format": "FULL",
+//             "phoneNumberRequired": true
+//           }
+//         }
+//       }
+//     ],
+//     "merchantInfo": {
+//       "merchantId": "01234567890123456789",
+//       "merchantName": "Example Merchant Name"
+//     },
+//     "transactionInfo": {
+//       "countryCode": "US",
+//       "currencyCode": "USD"
+//     }
+//   }
+// }''';
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -198,18 +198,22 @@ class _AddressScreenState extends State<AddressScreen> {
               //   onPaymentResult: onApplePayResult,
               //   paymentItems: paymentItems,
               // ),
-              GooglePayButton(
-                onPressed: () => addressToUsedForPayment(address),
-                type: GooglePayButtonType.buy,
-                margin: const EdgeInsets.only(top: 15),
-                width: double.infinity,
-                height: 50,
-                paymentConfiguration:
-                    PaymentConfiguration.fromJsonString(defaultGooglePay),
-                onPaymentResult: onGooglePayResult,
-                paymentItems: paymentItems,
-                loadingIndicator: const Center(child: Loader()),
-              )
+              // GooglePayButton(
+              //   onPressed: () => addressToUsedForPayment(address),
+              //   type: GooglePayButtonType.buy,
+              //   margin: const EdgeInsets.only(top: 15),
+              //   width: double.infinity,
+              //   height: 50,
+              //   paymentConfiguration:
+              //       PaymentConfiguration.fromJsonString(defaultGooglePay),
+              //   onPaymentResult: onGooglePayResult,
+              //   paymentItems: paymentItems,
+              //   loadingIndicator: const Center(child: Loader()),
+              // ),
+              CustomButton(text: 'Pay with GooglePay', onTap: () {
+                addressToUsedForPayment(address);
+                onGooglePayResult();
+              })
             ],
           ),
         ),

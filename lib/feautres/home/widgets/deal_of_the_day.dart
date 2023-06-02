@@ -50,9 +50,10 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 20,),
                     Image.network(
                       product!.images[0],
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fitHeight,
                       height: 235,
                     ),
                     Container(

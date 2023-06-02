@@ -17,7 +17,7 @@ const userRouter = require("./routes/user");
 //INIT
 //If we initialize this express (which we did) then we also have to listen it
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const DB = "mongodb+srv://vighnesh:Rotomacc%4027@cluster0.kvzn2wp.mongodb.net/?retryWrites=true&w=majority";
 
 

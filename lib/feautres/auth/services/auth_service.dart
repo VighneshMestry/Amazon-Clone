@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:amazon_clone/common/widgets/bottom_bar.dart';
 import 'package:amazon_clone/constants/error_handling.dart';
@@ -68,7 +67,6 @@ class AuthService {
     required String password,
   }) async {
     try {
-      log('Request called');
       print('checking');
       print('Request called');
       http.Response res = await http.post(
@@ -86,8 +84,6 @@ class AuthService {
         response: res,
         context: context,
         onSuccess: () async {
-          print('Output returned');
-          log('output returned');
           SharedPreferences prefs = await SharedPreferences.getInstance();
 
           //Provider stores the information of the user temporarily
@@ -136,6 +132,7 @@ class AuthService {
             },
           );
 
+          // ignore: use_build_context_synchronously
           var userProvider = Provider.of<UserProvider>(context, listen: false);
           userProvider.setUser(userRes.body);
         }

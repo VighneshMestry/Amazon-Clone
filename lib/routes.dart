@@ -5,7 +5,9 @@ import 'package:amazon_clone/feautres/auth/screens/auth_screen.dart';
 import 'package:amazon_clone/feautres/home/screens/category_deals_page.dart';
 import 'package:amazon_clone/feautres/home/screens/home_screen.dart';
 import 'package:amazon_clone/feautres/home/search/screens/search_screen.dart';
+import 'package:amazon_clone/feautres/order_details/screens/order_details.dart';
 import 'package:amazon_clone/feautres/product_details/screens/product_details_screen.dart';
+import 'package:amazon_clone/models/order.dart';
 import 'package:amazon_clone/models/product.dart';
 import 'package:flutter/material.dart';
 
@@ -68,6 +70,15 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => AddressScreen(
           totalAmount: totalAmount,
+        ),
+      );
+    
+    case OrderDetailScreen.routeName:
+      final order = routeSettings.arguments as Order;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => OrderDetailScreen(
+          order: order,
         ),
       );
 
