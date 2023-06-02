@@ -25,7 +25,6 @@ class _OrdersState extends State<Orders> {
 
   void fetchOrders() async {
     orders = await accountServices.fetchMyOrders(context: context);
-    print(orders.toString() + '+_+))()&*(&&&&&&&&&&&&&)');
     setState(() {});
   }
 

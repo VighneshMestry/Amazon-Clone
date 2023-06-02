@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
   static const String routeName = '/search-screen';
-  final searchQuery;
+  final String searchQuery;
   const SearchScreen({super.key, required this.searchQuery});
 
   @override

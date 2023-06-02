@@ -3,7 +3,7 @@ import 'package:amazon_clone/feautres/account/screen/account_screen.dart';
 import 'package:amazon_clone/feautres/cart/screens/cart_screen.dart';
 import 'package:amazon_clone/feautres/home/screens/home_screen.dart';
 import 'package:amazon_clone/provider/user_provider.dart';
-import 'package:badges/badges.dart' as Badges;
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -92,9 +92,9 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                 ),
               ),
-              child: Badges.Badge(
+              child: badges.Badge(
                 badgeContent: Text(cartLength.toString()),
-                badgeStyle: const Badges.BadgeStyle(
+                badgeStyle: const badges.BadgeStyle(
                   badgeColor: Colors.white,
                 ),
                 child: const Icon(Icons.shopping_cart_outlined),

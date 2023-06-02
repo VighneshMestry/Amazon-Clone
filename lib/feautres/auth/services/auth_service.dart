@@ -34,7 +34,6 @@ class AuthService {
         token: '',
         cart: [],
       );
-      print('response called');
       http.Response res = await http.post(
         Uri.parse('$uri/api/signup'),
         body: user.toJson(),
@@ -42,7 +41,6 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-      print('Response received');
 
       // ignore: use_build_context_synchronously
       httpErrorHandle(
@@ -67,8 +65,6 @@ class AuthService {
     required String password,
   }) async {
     try {
-      print('checking');
-      print('Request called');
       http.Response res = await http.post(
         Uri.parse('$uri/api/signin'),
         body: jsonEncode({

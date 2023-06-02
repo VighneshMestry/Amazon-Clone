@@ -35,7 +35,6 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void signUpUser() {
-    print('temp function called');
     authService.signUpUser(
       context: context,
       email: _emailController.text,
@@ -45,7 +44,6 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void signInUser() {
-    print('Temp Function called');
     authService.signInUser(
       context: context,
       email: _emailController.text,
@@ -168,9 +166,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         CustomButton(
                           text: 'Sign In',
                           onTap: () {
-                            print('Button Presses');
                             if (_signInFormKey.currentState!.validate()) {
-                              print('Function called');
                               signInUser();
                             }
                           },
